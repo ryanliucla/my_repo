@@ -7946,15 +7946,16 @@ Pace: 00:07:10
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">time_between</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span> <span class="n">date2</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">leap_year</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">time_between</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span> <span class="n">date2</span><span class="p">):</span>
     <span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">]</span>
-    <span class="n">y_diff</span> <span class="o">=</span> <span class="n">date2</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="n">date1</span><span class="o">.</span><span class="n">year</span>
-    <span class="n">m_diff</span> <span class="o">=</span> <span class="n">date2</span><span class="o">.</span><span class="n">month</span> <span class="o">-</span> <span class="n">date1</span><span class="o">.</span><span class="n">month</span>
-    <span class="n">d_diff</span> <span class="o">=</span> <span class="n">date2</span><span class="o">.</span><span class="n">day</span> <span class="o">-</span> <span class="n">date1</span><span class="o">.</span><span class="n">day</span>
+    <span class="n">y_diff</span><span class="p">,</span> <span class="n">m_diff</span><span class="p">,</span> <span class="n">d_diff</span> <span class="o">=</span> <span class="n">date2</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="n">date1</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">date2</span><span class="o">.</span><span class="n">month</span> <span class="o">-</span> <span class="n">date1</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">date2</span><span class="o">.</span><span class="n">day</span> <span class="o">-</span> <span class="n">date1</span><span class="o">.</span><span class="n">day</span>
     <span class="k">if</span> <span class="n">d_diff</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">m_diff</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">d_diff</span> <span class="o">+=</span> <span class="n">months</span><span class="p">[</span><span class="n">date1</span><span class="o">.</span><span class="n">month</span><span class="p">]</span>
-        <span class="k">if</span> <span class="p">((</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">((</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)))</span> <span class="ow">and</span> <span class="n">date1</span><span class="o">.</span><span class="n">month</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">leap_year</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="ow">and</span> <span class="n">date1</span><span class="o">.</span><span class="n">month</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">d_diff</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="n">m_diff</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">y_diff</span> <span class="o">-=</span> <span class="mi">1</span>
@@ -7974,11 +7975,9 @@ Pace: 00:07:10
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">birthday</span><span class="p">(</span><span class="n">birthdate</span><span class="p">):</span>
-    <span class="n">bday</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">birthdate</span><span class="p">,</span> <span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%Y"</span><span class="p">)</span>
-    <span class="n">curr</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">bday</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">birthdate</span><span class="p">,</span> <span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%Y"</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
     <span class="n">yr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">year</span>
-    <span class="n">age</span> <span class="o">=</span> <span class="n">time_between</span><span class="p">(</span><span class="n">bday</span><span class="p">,</span> <span class="n">curr</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="s2">"years old"</span><span class="p">)</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="n">time_between</span><span class="p">(</span><span class="n">bday</span><span class="p">,</span> <span class="n">curr</span><span class="p">)</span>
     <span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">birth</span> <span class="o">=</span> <span class="n">birthdate</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">birth</span><span class="p">:</span>
@@ -7986,6 +7985,7 @@ Pace: 00:07:10
     <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">curr</span><span class="o">.</span><span class="n">day</span> <span class="ow">or</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">curr</span><span class="o">.</span><span class="n">month</span><span class="p">:</span>
         <span class="n">yr</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="nb">next</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">yr</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nums</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">age</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"years old"</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">((</span><span class="nb">next</span><span class="o">-</span><span class="n">curr</span><span class="p">),</span> <span class="s2">"until next birthday"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8014,7 +8014,7 @@ Pace: 00:07:10
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>23 years old
-19 days, 2:07:17.302970 until next birthday
+18 days, 8:36:23.585747 until next birthday
 </pre>
 </div>
 </div>
@@ -8043,7 +8043,7 @@ Pace: 00:07:10
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>51 years old
-111 days, 2:07:15.658231 until next birthday
+110 days, 8:36:22.306784 until next birthday
 </pre>
 </div>
 </div>
@@ -8086,10 +8086,8 @@ Pace: 00:07:10
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">double_day</span><span class="p">(</span><span class="n">day1</span><span class="p">,</span> <span class="n">day2</span><span class="p">):</span>
-    <span class="n">d1</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">day1</span><span class="p">,</span> <span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%Y"</span><span class="p">)</span>
-    <span class="n">d2</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">day2</span><span class="p">,</span> <span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%Y"</span><span class="p">)</span>
-    <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">d1</span><span class="o">-</span> <span class="n">d2</span><span class="p">)</span>
-    <span class="n">twice</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">+</span> <span class="n">diff</span>
+    <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">day1</span><span class="p">,</span> <span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%Y"</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">day2</span><span class="p">,</span> <span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%Y"</span><span class="p">)</span>
+    <span class="n">twice</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">d1</span> <span class="o">-</span> <span class="n">d2</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Double Date: </span><span class="si">%02d</span><span class="s2">/</span><span class="si">%02d</span><span class="s2">/</span><span class="si">%02d</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">twice</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">twice</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">twice</span><span class="o">.</span><span class="n">year</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Person 1 is: </span><span class="si">%d</span><span class="s2"> Years, </span><span class="si">%d</span><span class="s2"> Months, </span><span class="si">%d</span><span class="s2"> Days old"</span> <span class="o">%</span> <span class="n">time_between</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">twice</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Person 2 is: </span><span class="si">%d</span><span class="s2"> Years, </span><span class="si">%d</span><span class="s2"> Months, </span><span class="si">%d</span><span class="s2"> Days old"</span> <span class="o">%</span> <span class="n">time_between</span><span class="p">(</span><span class="n">d2</span><span class="p">,</span> <span class="n">twice</span><span class="p">))</span>
@@ -8956,21 +8954,21 @@ Example of polymorphism
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>5 of Clubs
-8 of Clubs
-10 of Clubs
-Ace of Diamonds
-Jack of Diamonds
-5 of Hearts
-7 of Hearts
+<pre>8 of Clubs
+4 of Diamonds
+6 of Hearts
+8 of Hearts
+10 of Hearts
+2 of Spades
+6 of Spades
 False
 
-Ace of Clubs
-7 of Clubs
-8 of Diamonds
-2 of Hearts
-6 of Spades
-7 of Spades
+5 of Clubs
+9 of Clubs
+Jack of Clubs
+Queen of Diamonds
+King of Hearts
+Ace of Spades
 9 of Spades
 False
 
@@ -9094,11 +9092,11 @@ True
         <span class="bp">self</span><span class="o">.</span><span class="n">suit_hist</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
             <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">suits</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">suits</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
-                <span class="n">suited</span> <span class="o">=</span> <span class="n">PokerHand</span><span class="p">()</span>
+                <span class="n">flush</span> <span class="o">=</span> <span class="n">PokerHand</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cards</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">card</span><span class="o">.</span><span class="n">suit</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
-                        <span class="n">suited</span><span class="o">.</span><span class="n">add_card</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">suited</span><span class="o">.</span><span class="n">has_straight</span><span class="p">():</span>
+                        <span class="n">flush</span><span class="o">.</span><span class="n">add_card</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">flush</span><span class="o">.</span><span class="n">has_straight</span><span class="p">():</span>
                     <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span>
     <span class="k">def</span> <span class="nf">has_fourkind</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
